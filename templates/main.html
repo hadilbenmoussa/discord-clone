@@ -8,5 +8,10 @@
   </head>
   <body>
     {%include 'navbar.html'%} {% block content %} {% endblock %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
   </body>
 </html>
