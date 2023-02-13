@@ -18,7 +18,8 @@ class Room(models.Model):
     # the database cannot have an instance of this model that is blank
     description = models.TextField(null=True, blank=True)
     # to store the users in a room
-    # participants=
+    participants = models.ManyToManyField(
+        User, related_name='paticipants', blank=True)
     # when the model is updated
     updated = models.DateTimeField(auto_now=True)
     # when the room was created
@@ -40,5 +41,8 @@ class Message(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ['-updated', '-created']
+
     def __str__(self):
-        return self.body
+        return self.body[0:50]
